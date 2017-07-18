@@ -1,8 +1,7 @@
 ;;disable audio bell
 (setq ring-bell-function 'ignore)
-;;
+;;enable emacs auto load extra modify files
 (global-auto-revert-mode t)
-
 ;;define your abbrev
 (abbrev-mode t)
 (define-abbrev-table 'global-abbrev-table '(
@@ -18,6 +17,13 @@
 ;;enable recentf-mode
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
+;;enhance the show-paren-mode function
+(define-advice show-paren-function (:around (fn) fix-show-paren-function)
+  "highlight enclosing parens."
+  (cond ((looking-at-p "\\s(") (funcall fn))
+	(t (save-excursion
+	     (ignore-errors (backward-up-list))
+	     (funcall fn)))))
 ;; turn on highlight matching brackets when cursor is on one
 (show-paren-mode 1)
 ;; highlight brackets
@@ -67,5 +73,21 @@
 ;; C:copy file
 ;; D:delete file ;d:delete file need execute
 ;; R:rename files
+;;C-x C-q and use iedit-mode to modify
+
+;;occur mode dwin=do what i mean
+(defun occur-dwin()
+  "Call 'occur' with a sane default."
+  (interactive)
+  (push (if (region-active-p)
+	    (buffer-substring-no-properties
+	     (region-beginning)
+	     (region-end))
+	  (let ((sym (thing-at-point 'symbol)))
+	    (when (stringp sym)
+	      (regexp-quote sym))))
+	regexp-history)
+  (call-interactively 'occur))
+;;
 
 (provide 'init-better-defaults)

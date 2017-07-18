@@ -5,11 +5,11 @@
   (package-initialize)
   (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
 			   ("melpa" . "http://elpa.emacs-china.org/melpa/"))))
-
 ;;add whaever package you want here
 (defvar zzs/packages '(
 		       company
 		       monokai-theme
+		       darkokai-theme
 		       hungry-delete
 		       swiper
 		       counsel
@@ -17,12 +17,12 @@
 		       exec-path-from-shell
 		       popwin
 		       reveal-in-osx-finder
+		       expand-region
+		       iedit
+		       helm-ag
 		       anaconda-mode
 		       ) "Default packages")
-
 (setq package-selected-packages zzs/packages)
-
-
 (defun zzs/packages-installed-p ()
   (loop for pkg in zzs/packages
 	when (not (package-installed-p pkg)) do (return nil)
@@ -37,8 +37,9 @@
 
 ;;auto-company
 (global-company-mode t)
-;;load monokai theme
-(load-theme 'monokai t)
+;;load monokai-theme/darkokai-theme
+;;(load-theme 'monokai t)
+(load-theme 'darkokai t)
 ;;load hungry delete
 (require 'hungry-delete)
 (global-hungry-delete-mode)
@@ -48,13 +49,16 @@
 ;;config smartparens
 ;;(add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
 (smartparens-global-mode t)
+(sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
 ;; Find Executable Path on OS X
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 ;;config popwinq
 (require 'popwin)
 (popwin-mode t)
-;;config for anaconda-mode/python
+;;config of anaconda-mode/python
 (add-hook 'python-mode-hook 'anaconda-mode)
+;;config of expand-region
+
 
 (provide 'init-packages)
