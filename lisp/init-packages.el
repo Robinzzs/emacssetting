@@ -16,6 +16,7 @@
 		       smartparens
 		       exec-path-from-shell
 		       popwin
+		       reveal-in-osx-finder
 		       anaconda-mode
 		       ) "Default packages")
 

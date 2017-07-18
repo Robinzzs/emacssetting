@@ -29,7 +29,6 @@
   "Indent the currently visited buffer"
   (interactive)
   (indent-region (point-min) (point-max)))
-
 (defun indent-region-or-buffer ()
   "Indent a region if selected, otherwise the whole buffer"
   (interactive)
@@ -41,6 +40,32 @@
       (progn
 	(indent-buffer)
 	(message "Indented buffer.")))))
-
+;;hippie expand is dabbrev expand on steroids
+(setq hippie-expand-try-functions-list '(try-expand-dabbrev
+					 try-expand-dabbrev-all-buffers
+					 try-expand-dabbrev-from-kill
+					 try-complete-file-name
+					 try-complete-file-name-partially
+					 try-expand-all-abbrevs
+					 try-expand-list
+					 try-expand-line
+					 try-complete-lisp-symbol-partially
+					 try-complete-lisp-symbol))
+;;simplify the yes or no question
+(fset 'yes-or-no-p 'y-or-n-p)
+;;dired mode
+(setq dired-recursive-deletes 'always)
+(setq dired-recursive-copies 'always)
+(put 'dired-find-alternate-file 'disabled nil)
+(require 'dired-x) ;;C-x C-j open dired-mode in current directory
+(setq dired-dwim-target t) ;;help in two windows dired
+;;M-x reveal-in-osx-finder can open finder at current directory
+;;dired-mode C-x d
+;; +:to creat a directory
+;; C-x C-f:to creat a file
+;; g:to refresh dired mode
+;; C:copy file
+;; D:delete file ;d:delete file need execute
+;; R:rename files
 
 (provide 'init-better-defaults)

@@ -32,6 +32,7 @@
 (put 'upcase-region 'disabled nil)
 (setq auto-mode-alist
       (cons '("SConstruct" . python-mode) auto-mode-alist))
+;;while using emacs-shell
 (set-default 'compile-command "scons")
 ;;c mode for madagascar
 (add-hook 'c-mode-common-hook

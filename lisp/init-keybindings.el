@@ -14,7 +14,12 @@
 (global-set-key (kbd "C-h C-k") 'find-function-on-key)
 ;;github
 (global-set-key (kbd "C-c p f") 'counsel-git)
-
-;;indent region
+;;indent region/buffer
 (global-set-key (kbd "C-M-\\") 'indent-region-or-buffer)
+;;hippie-expend a extra-function help company-mode
+(global-set-key (kbd "s-/") 'hippie-expand)
+;;dired-mode
+(with-eval-after-load 'dired
+  (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
+
 (provide 'init-keybindings)
