@@ -16,6 +16,7 @@
 		       smartparens
 		       exec-path-from-shell
 		       popwin
+		       anaconda-mode
 		       ) "Default packages")
 
 (setq package-selected-packages zzs/packages)
@@ -52,7 +53,7 @@
 ;;config popwinq
 (require 'popwin)
 (popwin-mode t)
-
-
+;;config for anaconda-mode/python
+(add-hook 'python-mode-hook 'anaconda-mode)
 
 (provide 'init-packages)

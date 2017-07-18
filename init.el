@@ -33,6 +33,7 @@
 (setq auto-mode-alist
       (cons '("SConstruct" . python-mode) auto-mode-alist))
 (set-default 'compile-command "scons")
+;;c mode for madagascar
 (add-hook 'c-mode-common-hook
    '(lambda () (c-set-style "linux")
         (c-set-offset 'case-label 4)
