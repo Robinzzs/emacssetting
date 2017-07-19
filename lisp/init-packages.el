@@ -20,6 +20,10 @@
 		       expand-region
 		       iedit
 		       helm-ag
+		       flycheck
+		       yasnippet
+		       auto-yasnippet
+		       which-key
 		       anaconda-mode
 		       ) "Default packages")
 (setq package-selected-packages zzs/packages)
@@ -53,12 +57,21 @@
 ;; Find Executable Path on OS X
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
-;;config popwinq
+;;config popwin
 (require 'popwin)
 (popwin-mode t)
 ;;config of anaconda-mode/python
 (add-hook 'python-mode-hook 'anaconda-mode)
-;;config of expand-region
-
-
+;;flycheck
+;;version C-c ! V setup C-c ! v
+;;(global-flycheck-mode t)
+(add-hook 'python-mode-hook 'flycheck-mode)
+(add-hook 'c-mode-common-hook 'flycheck-mode)
+;;(add-hook 'prog-mode-hook #'flycheck-mode) ;self-modify
+;;yasnippet
+(require 'yasnippet)
+(yas-reload-all)
+(add-hook 'prog-mode-hook #'yas-minor-mode)
+;;which-key
+(which-key-mode 1)
 (provide 'init-packages)

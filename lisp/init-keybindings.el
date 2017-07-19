@@ -13,6 +13,7 @@
 (global-set-key (kbd "C-h C-f") 'find-function)
 (global-set-key (kbd "C-h C-v") 'find-variable)
 (global-set-key (kbd "C-h C-k") 'find-function-on-key)
+(global-set-key (kbd "C-w") 'backward-kill-word)
 ;;github
 (global-set-key (kbd "C-c p f") 'counsel-git)
 ;;indent region/buffer
@@ -36,6 +37,8 @@
   (define-key company-active-map (kbd "C-p") #'company-select-previous))
 ;;helm-ag
 (global-set-key (kbd "C-c p s") 'helm-do-ag-project-root) ;then C-c C-e edit
-
+;;auto-yasnippet
+(global-set-key (kbd "H-w") #'aya-create)
+(global-set-key (kbd "H-y") #'aya-expand)
 
 (provide 'init-keybindings)
