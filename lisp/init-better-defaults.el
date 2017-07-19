@@ -16,14 +16,23 @@
 (setq auto-save-default nil)
 ;;enable recentf-mode
 (recentf-mode 1)
-(setq recentf-max-menu-items 25)
+(setq recentf-max-menu-items 20)
 ;;enhance the show-paren-mode function
-(define-advice show-paren-function (:around (fn) fix-show-paren-function)
-  "highlight enclosing parens."
-  (cond ((looking-at-p "\\s(") (funcall fn))
-	(t (save-excursion
-	     (ignore-errors (backward-up-list))
-	     (funcall fn)))))
+(if (>= emacs-major-version 25)
+    (define-advice show-paren-function (:around (fn) fix-show-paren-function)
+      "highlight enclosing parens."
+      (cond ((looking-at-p "\\s(") (funcall fn))
+	    (t (save-excursion
+		 (ignore-errors (backward-up-list))
+		 (funcall fn))))
+      )
+  (defadvice show-paren-function (around fix-show-paren-function activate)
+    (cond ((looking-at-p "\\s(") ad-do-it)
+	  (t (save-excursion
+	       (ignore-errors (backward-up-list))
+	       ad-do-it)))
+    )
+  )
 ;; turn on highlight matching brackets when cursor is on one
 (show-paren-mode 1)
 ;; highlight brackets
