@@ -40,5 +40,7 @@
 ;;auto-yasnippet
 (global-set-key (kbd "H-w") #'aya-create)
 (global-set-key (kbd "H-y") #'aya-expand)
+;;reveal-n-osx-findr
+(global-set-key (kbd "C-/") 'reveal-in-osx-finder)
 
 (provide 'init-keybindings)
