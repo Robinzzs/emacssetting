@@ -1,5 +1,6 @@
 (source "gnu" "http://elpa.emacs-china.org/gnu/")
 (source "melpa" "http://elpa.emacs-china.org/melpa/")
+(source "melpa-stable" "http://elpa.emacs-china.org/melpa-stable/")
 
 (depends-on "2048-game")
 (depends-on "anaconda-mode")
@@ -7,6 +8,7 @@
 (depends-on "auto-yasnippet")
 (depends-on "cask")
 (depends-on "company")
+(depends-on "company-anaconda")
 (depends-on "counsel")
 (depends-on "darkokai-theme")
 (depends-on "dash")
